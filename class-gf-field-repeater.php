@@ -726,17 +726,20 @@ class GF_Field_Repeater extends GF_Field {
 		}
 
 		// Then check the repeater value
-                $parent_value = unserialize($parent_value);
-                if($parent_value && is_array($parent_value)) {
-                    //foreach repeater child
-                    foreach($parent_value as $child_key=>$child_value) {
-                        //foreach repeater child field
-                        foreach($child_value as $field_key=>$field_value) {
-                            if(!isset($children_parems[$field_key])){
-                                continue;
-                            }
+                
+                if(is_serialized( $parent_value )) {
+                    $parent_value = GFFormsModel::unserialize($parent_value);
+                    if($parent_value && is_array($parent_value)) {
+                        //foreach repeater child
+                        foreach($parent_value as $child_key=>$child_value) {
+                            //foreach repeater child field
+                            foreach($child_value as $field_key=>$field_value) {
+                                if(!isset($children_parems[$field_key])){
+                                    continue;
+                                }
 
-                            $parems[$field_key][$child_key] = array_shift($field_value);
+                                $parems[$field_key][$child_key] = array_shift($field_value);
+                            }
                         }
                     }
                 }
