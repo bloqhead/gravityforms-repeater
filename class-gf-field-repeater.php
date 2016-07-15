@@ -297,9 +297,9 @@ class GF_Field_Repeater extends GF_Field {
 
 			if (!empty($repeater_children)) {
 				$repeater_children_info = array();
-				$repeater_parems = GF_Field_Repeater::get_children_parem_values($form, $repeater_children);
-
-				foreach($repeater_children as $repeater_child) {
+				$repeater_parems = GF_Field_Repeater::get_children_parem_values($form, $repeater_children, $value);
+				
+                                foreach($repeater_children as $repeater_child) {
 					$repeater_children_info[$repeater_child] = array();
 					$repeater_child_field_index = GF_Field_Repeater::get_field_index($form, 'id', $repeater_child);
 
@@ -692,7 +692,7 @@ class GF_Field_Repeater extends GF_Field {
 		if (!empty($parems)) { return $parems; } else { return false; }
 	}
 
-	public static function get_children_parem_values($form, $children_ids) {
+	public static function get_children_parem_values($form, $children_ids, $parent_value) {
 		global $wp_filter;
 		$children_parems = GF_Field_Repeater::get_children_parems($form, $children_ids);
 
@@ -724,6 +724,23 @@ class GF_Field_Repeater extends GF_Field {
 				}
 			}
 		}
+
+		// Then check the repeater value
+                $parent_value = unserialize($parent_value);
+                if($parent_value && is_array($parent_value)) {
+                    //foreach repeater child
+                    foreach($parent_value as $child_key=>$child_value) {
+                        //foreach repeater child field
+                        foreach($child_value as $field_key=>$field_value) {
+                            if(!isset($children_parems[$field_key])){
+                                continue;
+                            }
+
+                            $parems[$field_key][$child_key] = array_shift($field_value);
+                        }
+                    }
+                }
+                
 		if (!empty($parems)) { return $parems; } else { return false; }
 	}
 
