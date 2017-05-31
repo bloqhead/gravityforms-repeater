@@ -1,4 +1,5 @@
-var gfRepeater_debug = gfRepeater_php.debug;
+// var gfRepeater_debug = gfRepeater_php.debug;
+var gfRepeater_debug = true;
 var gfRepeater_repeaters = {};
 var gfRepeater_submitted = false;
 var gfRepeater_init_done = false;
@@ -1103,7 +1104,7 @@ jQuery(document).bind('gform_post_render', function(){
 		} else {
 			alert('Notice to website owner: There was an error with one of your repeaters. This is usually caused by having ajax enabled on the form, forgetting to include a repeater-end field, or by trying to nest repeaters.');
 		}
-		
+
 		gfRepeater_init_done = true;
 	}
 });

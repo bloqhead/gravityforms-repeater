@@ -1,16 +1,16 @@
 <?php
 /*
-Plugin Name: Gravity Forms Repeater Add-On
-Plugin URI: https://wordpress.org/plugins/repeater-add-on-for-gravity-forms/
+Plugin Name: Gravity Forms Repeater Add-On (patched)
+Plugin URI: https://github.com/bloqhead/gravityforms-repeater
 Description: A Gravity Forms add-on that allows specified groups of fields to be repeated by the user.
-Version: 1.1.0-dev14
-Author: Kodie Grantham
+Version: 1.1.0-dev15
+Author: Kodie Grantham (original author)
 Author URI: http://kodieg.com
-GitHub Plugin URI: https://github.com/kodie/gravityforms-repeater
-GitHub Branch: development
+GitHub Plugin URI: https://github.com/bloqhead/gravityforms-repeater
+GitHub Branch: master
 */
 
-define('GF_REPEATER_VERSION', '1.1.0-dev14');
+define('GF_REPEATER_VERSION', '1.1.0-dev15');
 define('GF_REPEATER_PATH', basename(__DIR__).'/'.basename(__FILE__));
 define('GF_REPEATER_DEBUG', WP_DEBUG);
 
